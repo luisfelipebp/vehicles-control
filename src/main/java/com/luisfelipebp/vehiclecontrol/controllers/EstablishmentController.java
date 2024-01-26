@@ -32,7 +32,12 @@ public class EstablishmentController {
     }
 
     @PostMapping("/establishment/add-vehicle")
-    public ResponseEntity<Optional<Establishment>> controlVehicles(@RequestBody ControlVehicle controlVehicle) throws Exception {
-        return ResponseEntity.ok().body(controlVehicles.controlVehicle(controlVehicle));
+    public ResponseEntity<Optional<Establishment>> controlAddVehicles(@RequestBody ControlVehicle controlVehicle) throws Exception {
+        return ResponseEntity.ok().body(controlVehicles.controlVehicle(controlVehicle, "Add"));
+    }
+
+    @PostMapping("/establishment/remove-vehicle")
+    public ResponseEntity<Optional<Establishment>> controlRemoveVehicles(@RequestBody ControlVehicle controlVehicle) throws Exception {
+        return ResponseEntity.ok().body(controlVehicles.controlVehicle(controlVehicle, "Remove"));
     }
 }

@@ -18,15 +18,24 @@ public class ControlVehicles {
     @Autowired
     private VehicleService vehicleService;
 
-    public Optional<Establishment> controlVehicle(ControlVehicle controlVehicle) throws Exception {
+    public Optional<Establishment> controlVehicle(ControlVehicle controlVehicle, String control) throws Exception {
         var establishment = establishmentService.findById(controlVehicle.id_establishment());
         var vehicle = vehicleService.findById(controlVehicle.id_vehicle());
 
-        if(vehicle.get().getTipo().equals(TypeVehicle.CARRO)){
-            establishment.get().setQtdVagaCarro(establishment.get().getQtdVagaCarro() - 1);
-        }else if (vehicle.get().getTipo().equals(TypeVehicle.MOTO)){
-            establishment.get().setQtdVagaMoto(establishment.get().getQtdVagaMoto() - 1);
+        if(control.equals("Add")){
+            if(vehicle.get().getTipo().equals(TypeVehicle.CARRO)){
+                establishment.get().setQtdVagaCarro(establishment.get().getQtdVagaCarro() - 1);
+            }else if (vehicle.get().getTipo().equals(TypeVehicle.MOTO)){
+                establishment.get().setQtdVagaMoto(establishment.get().getQtdVagaMoto() - 1);
+            }
+        }else if(control.equals("Remove")){
+            if(vehicle.get().getTipo().equals(TypeVehicle.CARRO)){
+                establishment.get().setQtdVagaCarro(establishment.get().getQtdVagaCarro() + 1);
+            }else if (vehicle.get().getTipo().equals(TypeVehicle.MOTO)){
+                establishment.get().setQtdVagaMoto(establishment.get().getQtdVagaMoto() + 1);
+            }
         }
+
 
         if(establishment.get().getQtdVagaCarro() < 0){
             throw new Exception("Todas as vagas de carro estão ocupadas!");
