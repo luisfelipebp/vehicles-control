@@ -46,7 +46,7 @@ Cria um novo estabelecimento com os seguintes parâmetros no formato JSON:
 ```
 
 #### POST /establishment/add-vehicle
-Adiciona uma vaga para um tipo específico de veículo em um estabelecimento. Os parâmetros devem ser enviados no formato JSON:
+Adiciona um veículo para uma vaga de um estabelecimento. Os parâmetros devem ser enviados no formato JSON:
 
 ```
 {
